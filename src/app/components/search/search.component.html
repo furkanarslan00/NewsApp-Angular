@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="recent-container">
+        
+    <div *ngIf="searchResults.length > 0">
+      <div class="recent">
+        <h2>Search Results for "{{ searchQuery }}"</h2>
+    </div>
+
+      <div *ngFor="let article of searchResults; let last = last">
+        <div *ngIf="article.urlToImage" class="article-item">
+            <img [src]="article.urlToImage" alt="{{ article.title }}" class="article-image">
+            <div class="article-content">
+
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                <div class="article-info2">
+                  <span>{{ article.author }}</span>
+                  <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+                </div>
+        <a [href]="article.url" target="_blank">Read more</a>
+      </div>
+    </div>
+
+
+    <div class="article-divider" *ngIf="!last"></div>
+  
+  </div>
+  
+
+  <div class="pagination">
+    <button (click)="goToPage('search', currentSearchPage - 1)" [disabled]="currentSearchPage === 1">
+      <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+    </button>
+    <button (click)="goToPage('search', currentSearchPage + 1)" [disabled]="searchResults.length < pageSize">
+      <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+    </button>
+  </div>
+  
+
+  </div>
+
+
+  <div class="scroll2" (click)="scrollTop()">
+    <img
+      src="https://izmirvitray.com.tr/images/top.png"
+      alt="En Üste Git"
+      class="scroll2-button"
+    />
+  </div>
+
+  <div *ngIf="searchResults.length === 0">
+      <h2>No Result for "{{ searchQuery }}"</h2>
+
+
+
+      

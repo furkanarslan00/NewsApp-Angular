@@ -1,0 +1,105 @@
+<div class="container">
+  <div class="recent-container">
+    <div class="recent ">
+      <div class="category-dropdown" >
+        <input type="text" placeholder="Select Category" readonly (click)="toggleDropdown()" [value]="selectedCategory">
+        <img src="https://d29fhpw069ctt2.cloudfront.net/icon/image/39095/preview.png" class="dropdown-icon clickable" (click)="toggleDropdown()">
+        <div class="dropdown-content" [class.show]="dropdownOpen">
+          <a *ngFor="let category of categories" (click)="selectCategory(category)">
+            {{ category }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="categoryNews && categoryNews.articles.length > 0">
+      <div *ngFor="let article of categoryNews.articles; let i = index">
+        <div class="article-item">
+          <img *ngIf="article.urlToImage" 
+          [src]="article.urlToImage" 
+          (error)="article.urlToImage = 'https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj'" 
+          alt="{{ article.title }}" 
+          class="article-image">
+          <ng-container *ngIf="!article.urlToImage">
+            <img src="https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj" 
+                 alt="Default Image" 
+                 class="article-image">
+          </ng-container>
+          <div class="article-content">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.description }}</p>
+            <div class="article-info2">
+              <span>{{ article.author }}</span>
+              <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+            </div>
+            <a [href]="article.url" target="_blank">Read more</a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="pagination">
+        <button (click)="goToPage('recent', currentRecentPage - 1)" [disabled]="currentRecentPage === 1">
+          <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+        </button>
+        <button (click)="goToPage('recent', currentRecentPage + 1)" [disabled]="categoryNews.articles.length < pageSize">
+          <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+        </button>
+      </div>
+    </div>
+      
+
+    
+  </div>
+
+  <div class="popular-container">
+    <div class="popular">
+      <h2>{{ selectedCategory }} POPULAR</h2>
+    </div>
+
+    <div *ngIf="trendingNews && trendingNews.articles.length > 0">
+      <div *ngFor="let article of trendingNews.articles; let i = index">
+        <div class="article-item">
+          <img *ngIf="article.urlToImage" 
+          [src]="article.urlToImage" 
+          (error)="article.urlToImage = 'https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj'" 
+          alt="{{ article.title }}" 
+          class="article-image">      
+          <ng-container *ngIf="!article.urlToImage">
+            <img src="https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj" 
+                 alt="Default Image" 
+                 class="article-image">
+          </ng-container>
+          <div class="article-content">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.description }}</p>
+            <div class="article-info">
+              <span>{{ article.author }}</span>
+              <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+            </div>
+            <a [href]="article.url" target="_blank">Read more</a>
+
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pagination">
+        <button (click)="goToPage('popular', currentPopularPage - 1)" [disabled]="currentPopularPage === 1">
+          <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+        </button>
+        <button (click)="goToPage('popular', currentPopularPage + 1)" [disabled]="trendingNews.articles.length < pageSize">
+          <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="scroll3" (click)="scrollTop()">
+  <img
+    src="https://izmirvitray.com.tr/images/top.png"
+    alt="En Üste Git"
+    class="scroll3-button"
+  />
+</div>

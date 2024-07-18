@@ -1,0 +1,227 @@
+<div class="highlight-container">
+  <div class="highlights">
+    <h2>HIGHLIGHTS</h2>
+  </div>
+  <div *ngIf="newsData">
+    <!-- Slider Container -->
+    <div class="slider-container">
+      <div class="slider" [style.transform]="'translateX(' + -currentSlide * 100 + '%)'">
+        <div *ngFor="let article of trendingArticles" class="slide">
+          <img [src]="article.urlToImage" alt="{{ article.title }}">
+          <div class="article-details">
+            <h3>{{ article.title }}</h3>
+            <p>{{ article.description }}</p>
+            <div class="article-info">
+              <span>{{ article.author }}</span>
+              <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="Stick-Button">
+      <button *ngFor="let article of trendingArticles; let i = index"
+              class="nav-button"
+              [class.active]="i === currentSlide"
+              (click)="goToSlide(i)"></button>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="slider-controls">
+  <button class="prev" (click)="prevSlide()">&#10094;</button>
+  <button class="next" (click)="nextSlide()">&#10095;</button>
+</div> 
+
+    <!--------------------------------------------------------------------------------->
+
+    <div class="container">
+      <div class="recent-container">
+        <div class="recent">
+          <h2>RECENT NEWS</h2>
+        </div>
+        
+        <div *ngIf="recentArticles.length > 0">
+          <div *ngFor="let article of recentArticles; let last = last">
+            <div class="article-item">
+              <img *ngIf="article.urlToImage" 
+                   [src]="article.urlToImage" 
+                   (error)="article.urlToImage = 'https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj'" 
+                   class="article-image">
+              <ng-container *ngIf="!article.urlToImage">
+                <img src="https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj" 
+                     alt="Default Image" 
+                     class="article-image">
+              </ng-container>
+              <div class="article-content">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                <div class="article-info2">
+                  <span>{{ article.author }}</span>
+                  <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+                </div>
+                <a [href]="article.url" target="_blank">Read more</a>
+
+              </div>
+            </div>
+            <div class="article-divider" *ngIf="!last"></div>
+          </div>
+
+          <div class="pagination">
+            <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">
+              <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+            </button>
+            <button (click)="goToPage(currentPage + 1)" [disabled]="recentArticles.length < pageSize">
+              <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+            </button>
+          </div>
+
+        </div>
+      </div>
+    
+      <div class="popular-container">
+        <div class="popular">
+          <h2>POPULAR POSTS</h2>
+        </div>
+        <div *ngIf="popularArticles.length > 0">
+          <div *ngFor="let article of popularArticles; let last = last">
+            <div class="article-item">
+              <img *ngIf="article.urlToImage" 
+              [src]="article.urlToImage" 
+              (error)="article.urlToImage = 'https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj'" 
+              class="article-image">
+         <ng-container *ngIf="!article.urlToImage">
+           <img src="https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj" 
+                alt="Default Image" 
+                class="article-image">
+         </ng-container>
+              <div class="article-content">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                <div class="article-info2">
+                  <span>{{ article.author }}</span>
+                  <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+                </div>
+                <a [href]="article.url" target="_blank">Read more</a>
+
+              </div>
+            </div>
+            <div class="article-divider" *ngIf="!last"></div>
+          </div>
+    
+
+          <div class="pagination">
+            <button (click)="goToPopularPage(popularCurrentPage - 1)" [disabled]="popularCurrentPage === 1">
+              <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+            </button>
+            <button (click)="goToPopularPage(popularCurrentPage + 1)" [disabled]="popularArticles.length < pageSize">
+              <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+        <!--------------------------------------------------------------------------------->
+
+        <div class="container">
+          <div class="recent-container">
+            <div class="recent">
+              <h2>EDITOR'S PICK</h2>
+            </div>
+            <div *ngIf="editorPicks.length > 0">
+              <div *ngFor="let article of editorPicks; let last = last">
+                <div class="article-item">
+                  <img *ngIf="article.urlToImage" 
+                  [src]="article.urlToImage" 
+                  (error)="article.urlToImage = 'https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj'" 
+                  class="article-image">
+             <ng-container *ngIf="!article.urlToImage">
+               <img src="https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj" 
+                    alt="Default Image" 
+                    class="article-image">
+             </ng-container>
+                  <div class="article-content">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.description }}</p>
+                    <div class="article-info2">
+                      <span>{{ article.author }}</span>
+                      <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+                    </div>
+                            <a [href]="article.url" target="_blank">Read more</a>
+
+                  </div>
+                </div>
+                <div class="article-divider" *ngIf="!last"></div>
+              </div>
+              <div class="pagination">
+                <button (click)="goToEditorPicksPage(editorPicksCurrentPage - 1)" [disabled]="editorPicksCurrentPage === 1">
+                  <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+                </button>
+                <button (click)="goToEditorPicksPage(editorPicksCurrentPage + 1)" [disabled]="editorPicks.length < pageSize">
+                  <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+                </button>
+              </div>
+              
+            </div>
+          </div>
+        
+          <div class="popular-container">
+            <div class="popular">
+              <h2>TRENDING</h2>
+            </div>
+            <div *ngIf="trendingPosts.length > 0">
+              <div *ngFor="let article of trendingPosts; let last = last">
+                <div class="article-item">
+                  <img *ngIf="article.urlToImage" 
+                  [src]="article.urlToImage" 
+                  (error)="article.urlToImage = 'https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj'" 
+                  class="article-image">
+             <ng-container *ngIf="!article.urlToImage">
+               <img src="https://yt3.googleusercontent.com/ay7er5Rg2VpzXBnn-nGEw5g6GKzRT2WajzKx8dQ3YWVpYCs71V83s0w7YEnSl9L7l2cawoGiXQ=s900-c-k-c0x00ffffff-no-rj" 
+                    alt="Default Image" 
+                    class="article-image">
+             </ng-container>
+                  <div class="article-content">
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.description }}</p>
+                    <div class="article-info2">
+                      <span>{{ article.author }}</span>
+                      <span>{{ article.publishedAt | date: 'MMM d, y' }}</span>
+                    </div>
+                    <a [href]="article.url" target="_blank">Read more</a>
+
+                  </div>
+                </div>
+                <div class="article-divider" *ngIf="!last"></div>
+              </div>
+              <div class="pagination">
+                <button (click)="goToTrendingPostsPage(trendingPostsCurrentPage - 1)" [disabled]="trendingPostsCurrentPage === 1">
+                  <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Previous" class="pagination-icon">
+                </button>
+                <button (click)="goToTrendingPostsPage(trendingPostsCurrentPage + 1)" [disabled]="trendingPosts.length < pageSize">
+                  <img src="https://cdn-icons-png.flaticon.com/512/271/271228.png" alt="Next" class="pagination-icon">
+                </button>
+              </div>
+              
+              
+            </div>
+          </div>
+        </div>
+
+
+        <div class="scroll1" (click)="scrollTop()">
+          <img
+            src="https://izmirvitray.com.tr/images/top.png"
+            alt="En Üste Git"
+            class="scroll1-button"
+          />
+        </div>
+        

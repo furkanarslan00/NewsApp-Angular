@@ -1,0 +1,92 @@
+<div class="about-page">
+  <div class="about-container">
+    <div class="about-profile-image-container">
+      <img
+        [src]="imageSource"
+        alt="Furkan Arslan"
+        class="about-profile-image"
+        [style.maxHeight.%]="imageHeightPercent"
+      />
+    </div>
+    <div class="about-title">
+      <div>Hello,</div>
+      <div class="normal-font">Welcome FA News!</div>
+    </div>
+    <div class="about-content">
+      <div id="Web" class="about-category">
+        <div class="about-category-images">
+          <div class="about-project-info-box">
+            <h4 class="about-main-info-title">About Me</h4>
+            <div class="about-project-info">
+              <p>&nbsp;&nbsp;&nbsp;Hello, I'm Furkan Arslan, I'm a 4rd year Software Engineering student. I aim to be a problem-solving software engineer specializing in programming, data structures, web development and software design. I strive to strengthen my goal of providing effective solutions to real-world problems every day.</p>
+            </div>
+          </div>
+          <div class="about-project-info-box">
+            <h4 class="about-main-info-title">Personal Information</h4>
+            <div class="personal-info-container">
+              <div class="personal-info-item">
+                <img src="https://cdn-icons-png.freepik.com/512/52/52349.png" alt="İkon" class="personal-info-icon" />
+                <span class="info-text">Biga, Canakkale, Turkey</span>
+              </div>
+              <div class="personal-info-item">
+                <img src="https://icon-library.com/images/calendar-icon-white-png/calendar-icon-white-png-2.jpg" alt="İkon" class="personal-info-icon" />
+                <span class="info-text">27.07.2002</span>
+              </div>
+              <div class="personal-info-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/116/116395.png" alt="İkon" class="personal-info-icon" />
+                <span class="info-text">Ankara, Turkey</span>
+              </div>
+              <div class="personal-info-item">
+                <img src="https://static-00.iconduck.com/assets.00/linkedin-icon-1024x1024-jz44rpiz.png" alt="İkon" class="personal-info-icon" />
+                <a href="https://www.linkedin.com/in/furkanarslan00/" class="info-text" target="_blank" rel="noopener noreferrer">linkedin.com/furkanarslan00</a>
+              </div>
+              <div class="personal-info-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="İkon" class="personal-info-icon" />
+                <a href="https://github.com/furkanarslan00" class="info-text" target="_blank" rel="noopener noreferrer">github.com/furkanarslan00</a>
+              </div>
+            </div>
+          </div>
+          <div class="about-project-info-box">
+            <h4 class="about-main-info-title">Education</h4>
+            <div class="about-project-info">
+              <p><span class="about-bold-text">Cankaya University</span></p>
+              <p style="margin: 0;"><span class="about-boldd-text">Software Engineering 4rd Class</span></p>
+              <p style="margin: 0;"><span class="about-bolddd-text"> · [2020-Current]</span></p>
+              <p style="margin: 0;"><span class="about-bolddd-text">· Final Grade: GPA: 2.84/4.0</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-category">
+          <h2 class="contact-category-title">Contact Me</h2>
+          <div class="contact-form">
+            <form (submit)="handleSubmit($event)">
+              <div class="contact-info">
+                <input type="text" placeholder="Name" [(ngModel)]="name" name="name" required />
+              </div>
+              <div class="contact-info">
+                <input type="email" placeholder="Email" [(ngModel)]="email" name="email" required />
+              </div>
+              <div class="contact-info">
+                <textarea placeholder="Message" [(ngModel)]="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="submit">Send</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="scroll" (click)="scrollTop()">
+  <img
+    src="https://izmirvitray.com.tr/images/top.png"
+    alt="En Üste Git"
+    class="scroll-button"
+  />
+</div>
+

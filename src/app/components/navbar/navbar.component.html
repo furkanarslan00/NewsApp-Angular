@@ -1,0 +1,16 @@
+<button class="navbar-toggle" (click)="toggleNavbar()">&#9776;</button>
+<nav class="navbar" [ngClass]="{'navbar-expanded': isNavbarExpanded}">
+  <ul class="navbar-list">
+    <li><a routerLink="/" class="navbar-item" (click)="toggleNavbar()">HOME</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'SCIENCE' }" class="navbar-item" (click)="toggleNavbar()">CATEGORIES</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'SCIENCE' }" class="navbar-item" (click)="toggleNavbar()">SCIENCE</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'BUSINESS' }" class="navbar-item" (click)="toggleNavbar()">BUSINESS</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'SPORTS' }" class="navbar-item" (click)="toggleNavbar()">SPORTS</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'ENTERTAINMENT' }" class="navbar-item" (click)="toggleNavbar()">ENTERTAINMENT</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'TECHNOLOGY' }" class="navbar-item" (click)="toggleNavbar()">TECHNOLOGY</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'GENERAL' }" class="navbar-item" (click)="toggleNavbar()">GENERAL</a></li>
+    <li><a [routerLink]="['/categories']" [queryParams]="{ category: 'HEALTH' }" class="navbar-item" (click)="toggleNavbar()">HEALTH</a></li>
+    <li><a routerLink="/about" class="navbar-item" (click)="toggleNavbar()">ABOUT ME</a></li>
+    <li class="close-btn" (click)="toggleNavbar()">&#10006;</li> 
+  </ul>
+</nav>
