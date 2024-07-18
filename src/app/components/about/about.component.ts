@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-  imageSource: string = 'meapc.jpg';
+  imageSource: string = '/assets/meapc.jpg';
   imageHeightPercent: number = 100;
 
   name: string = ''; 
